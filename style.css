@@ -212,3 +212,34 @@ p,
     transform: translate3d(4px, 0, 0);
   }
 }
+
+/* Mobile Navigation */
+
+.mobileNav {
+  height: 400px;
+  background-color: rgb(0, 159, 107, 0.8);
+}
+
+.mobileNav nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2rem 2rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.logo-container h3 {
+  margin-left: -5rem;
+  margin-bottom: 4rem;
+}
+
+.logo-container > button {
+  position: relative;
+  top: -120px;
+}

@@ -217,7 +217,7 @@ p,
 /* Mobile Navigation */
 
 .mobileNav {
-  height: 100px;
+  height: 80px;
   background-color: rgb(0, 159, 107, 0.9);
   width: 100%;
   transition: all 1s;
@@ -283,7 +283,7 @@ button {
 
 @media screen and (max-width: 600px) {
   .banner {
-    height: 170vh;
+    height: 1050px;
   }
   .banner h1 {
     font-size: 2rem;
@@ -306,11 +306,7 @@ button {
     margin-left: -165px;
   }
 
-  .container-about {
-    margin-top: -40px;
-  }
-
   .container-services {
-    margin-top: 290px;
+    height: 1050px;
   }
 }

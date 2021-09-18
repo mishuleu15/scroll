@@ -48,8 +48,10 @@ var onresize = function () {
   width = document.body.clientWidth;
   if (width < 800) {
     nav.style.display = 'none';
+    divMobile.style.display = '';
   } else {
     nav.style.display = '';
+    divMobile.style.display = 'none';
   }
 };
 
@@ -116,7 +118,7 @@ function toggleMobileNav() {
 
     logo.style.marginBottom = '';
     logo.style.top = '-2px';
-    divMobile.style.height = '400px';
+    divMobile.style.height = '350px';
     divMobile.style.backgroundColor = 'rgb(0, 159, 107, 0.9)';
     showMenuMobile = true;
   } else {

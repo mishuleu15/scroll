@@ -1,46 +1,55 @@
+const html = document.querySelector('html');
 const body = document.querySelector('body');
 const nav = document.querySelector('.nav-container');
 const backToTopBtn = document.querySelector('.back-to-top');
 const btns = document.querySelectorAll('a');
 const logo = document.querySelector('.logo');
+const banner = document.querySelector('.banner');
+const imageBanner = document.querySelector('.image');
+
 let divMobile;
+let btnMobile;
+let navigationShow;
+
+let showMenuMobile = false;
 
 function toTop() {
   document.documentElement.scrollTop = 0;
 }
 
-btns.forEach((btn) => {
-  btn.addEventListener('click', (e) => {
-    const styles = e.currentTarget.classList;
-    if (styles.contains('about')) {
-      window.scrollTo(0, 1045);
-    } else if (styles.contains('services')) {
-      window.scrollTo(0, 1980);
-    } else if (styles.contains('tour')) {
-      window.scrollTo(0, 2950);
-    }
+function test(buttons) {
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const styles = e.currentTarget.classList;
+      if (styles.contains('about')) {
+        window.scrollTo(0, 1045);
+      } else if (styles.contains('services')) {
+        window.scrollTo(0, 1980);
+      } else if (styles.contains('tour')) {
+        window.scrollTo(0, 2950);
+      }
+    });
   });
-});
+}
 
 window.addEventListener('scroll', (e) => {
   if (window.scrollY > 50) {
     nav.classList.add('nav-bar');
+
     backToTopBtn.hidden = false;
   } else if (window.scrollY < 50) {
     nav.classList.remove('nav-bar');
+
     backToTopBtn.hidden = true;
   }
 });
 
 var onresize = function () {
   width = document.body.clientWidth;
-  height = document.body.clientHeight;
-  if (width < 1024) {
+  if (width < 800) {
     nav.style.display = 'none';
-    divMobile.hidden = false;
   } else {
     nav.style.display = '';
-    divMobile.hidden = true;
   }
 };
 
@@ -51,9 +60,14 @@ function mobileNav() {
   const div2 = document.createElement('div');
   div2.classList.add('logo-container');
   const button = document.createElement('button');
-  button.textContent = 'BUTONU';
+  btnMobile = button;
+  const i = document.createElement('i');
+  i.classList.add('fas', 'fa-bars');
+  button.appendChild(i);
   const mobNav = document.createElement('nav');
+  navigationShow = mobNav;
   const ul = document.createElement('ul');
+  ulMobile = ul;
   const li1 = document.createElement('li');
   const li2 = document.createElement('li');
   const li3 = document.createElement('li');
@@ -66,24 +80,59 @@ function mobileNav() {
   a2.href = '#1';
   a3.href = '#2';
   a4.href = '#3';
+
   li1.appendChild(a1);
-  li1.textContent = 'Home';
+  a1.textContent = 'Home';
+  a1.classList.add('home');
   li2.appendChild(a2);
-  li2.textContent = 'About';
+  a2.textContent = 'About';
+  a2.classList.add('about');
   li3.appendChild(a3);
-  li3.textContent = 'Services';
+  a3.textContent = 'Services';
+  a3.classList.add('services');
   li4.appendChild(a4);
-  li4.textContent = 'Tour';
-  ul.append(logo, li1, li2, li3, li4);
+  a4.textContent = 'Tour';
+  a4.classList.add('tour');
+
+  ul.append(li1, li2, li3, li4);
+
   mobNav.appendChild(ul);
-  div2.append(mobNav, button);
-  div1.append(div2);
+  navigationShow = mobNav;
+
+  div2.append(mobNav);
+  div1.append(logo, div2, button);
+
   body.insertBefore(div1, document.body.firstChild);
-  div1.hidden = true;
+  navigationShow.hidden = true;
+
+  const btns = document.querySelectorAll('a');
+  console.log(btns);
+  test(btns);
 }
 
+function toggleMobileNav() {
+  if (!showMenuMobile) {
+    navigationShow.hidden = false;
+
+    logo.style.marginBottom = '';
+    logo.style.top = '-2px';
+    divMobile.style.height = '400px';
+    divMobile.style.backgroundColor = 'rgb(0, 159, 107, 0.9)';
+    showMenuMobile = true;
+  } else {
+    navigationShow.hidden = true;
+    divMobile.style.height = '100px';
+    logo.style.marginBottom = '235px';
+    showMenuMobile = false;
+  }
+}
+
+// On Load
+test(btns);
 mobileNav();
+onresize();
 
+// Event Listeners
 window.addEventListener('resize', onresize);
-
 backToTopBtn.addEventListener('click', toTop);
+btnMobile.addEventListener('click', toggleMobileNav);

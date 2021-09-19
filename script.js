@@ -17,7 +17,7 @@ function toTop() {
   document.documentElement.scrollTop = 0;
 }
 
-function test(buttons) {
+function addEventListeners(buttons) {
   buttons.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       const styles = e.currentTarget.classList;
@@ -109,13 +109,12 @@ function mobileNav() {
 
   const btns = document.querySelectorAll('a');
   console.log(btns);
-  test(btns);
+  addEventListeners(btns);
 }
 
 function toggleMobileNav() {
   if (!showMenuMobile) {
     navigationShow.hidden = false;
-
     logo.style.marginBottom = '';
     logo.style.top = '-2px';
     divMobile.style.height = '350px';
@@ -130,7 +129,7 @@ function toggleMobileNav() {
 }
 
 // On Load
-test(btns);
+addEventListeners(btns);
 mobileNav();
 onresize();
 
